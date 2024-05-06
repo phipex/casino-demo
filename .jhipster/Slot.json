@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20240506165036"
+  },
+  "applications": ["demoCasino"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "idCasino",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "serial",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nuc",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "initialized",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "balance",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Slot",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "casino",
+      "relationshipName": "casino",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "model",
+      "relationshipName": "model",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

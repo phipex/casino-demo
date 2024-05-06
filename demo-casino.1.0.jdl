@@ -10,7 +10,7 @@ application {
     clientThemeVariant dark
     creationTimestamp 1715012583769
     databaseType sql
-    devDatabaseType h2Disk
+    devDatabaseType h2Memory
     enableGradleEnterprise false
     enableHibernateCache false
     enableSwaggerCodegen false
@@ -29,5 +29,48 @@ application {
     websocket spring-websocket
     withAdminUi true
   }
+    entities Operator, Casino, Slot, Model, Manufacturer
 }
 
+entity Operator {
+
+    name String required
+    nit String required
+    contract String required
+
+}
+
+entity Casino {
+    nit String required
+    name String required
+    direction String required
+}
+
+entity Slot {
+    idCasino Integer required
+    serial String required
+    nuc String required
+    initialized ZonedDateTime required
+    balance BigDecimal
+}
+
+entity Model {
+    name String required
+}
+
+entity Manufacturer {
+    name String required
+}
+
+relationship ManyToOne {
+    Casino{operator(name)} to Operator
+    Slot{casino(name)} to Casino
+    Slot{model(name)} to Model
+    Model{manufacturer(name)} to Manufacturer
+
+}
+dto Operator, Casino, Slot, Model, Manufacturer with mapstruct
+paginate Operator, Casino, Slot, Model, Manufacturer with pagination
+service Operator, Casino, Slot, Model, Manufacturer with serviceImpl
+search Operator, Casino, Slot, Model, Manufacturer with no
+filter Operator, Casino, Slot, Model, Manufacturer

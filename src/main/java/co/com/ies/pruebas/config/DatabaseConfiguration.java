@@ -38,7 +38,8 @@ public class DatabaseConfiguration {
     public Object h2TCPServer() throws SQLException {
         String port = getValidPortForH2();
         log.debug("H2 database is available on port {}", port);
-        return H2ConfigurationHelper.createServer(port);
+        return org.h2.tools.Server.createWebServer("-web", "-webAllowOthers", "-webDaemon", "-webPort", port);
+        //return H2ConfigurationHelper.createServer(port);
     }
 
     private String getValidPortForH2() {

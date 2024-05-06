@@ -30,7 +30,7 @@ springBoot {
 }
 
 bootRun {
-    args = ["--spring.profiles.active=${springProfiles}"]
+    args = ["--spring.profiles.active=${springProfiles}","-web -webAllowOthers -tcp -tcpAllowOthers -browser"]
 }
 
 task webapp(type: NpmTask) {

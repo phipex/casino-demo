@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20240506165037"
+  },
+  "applications": ["demoCasino"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Model",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "manufacturer",
+      "relationshipName": "manufacturer",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

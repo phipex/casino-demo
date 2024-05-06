@@ -41,6 +41,11 @@ public class CacheConfiguration {
             createCache(cm, co.com.ies.pruebas.repository.UserRepository.USERS_BY_LOGIN_CACHE);
             createCache(cm, co.com.ies.pruebas.repository.UserRepository.USERS_BY_EMAIL_CACHE);
             createCache(cm, co.com.ies.pruebas.domain.Authority.class.getName());
+            createCache(cm, co.com.ies.pruebas.domain.Operator.class.getName());
+            createCache(cm, co.com.ies.pruebas.domain.Casino.class.getName());
+            createCache(cm, co.com.ies.pruebas.domain.Slot.class.getName());
+            createCache(cm, co.com.ies.pruebas.domain.Model.class.getName());
+            createCache(cm, co.com.ies.pruebas.domain.Manufacturer.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
