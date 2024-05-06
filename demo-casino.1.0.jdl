@@ -1,0 +1,33 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName demoCasino
+    buildTool gradle
+    cacheProvider ehcache
+    clientFramework react
+    clientTheme yeti
+    clientThemeVariant dark
+    creationTimestamp 1715012583769
+    databaseType sql
+    devDatabaseType h2Disk
+    enableGradleEnterprise false
+    enableHibernateCache false
+    enableSwaggerCodegen false
+    enableTranslation false
+    jhipsterVersion "8.4.0"
+    jwtSecretKey "MzgxYjU3MDg4NGIxODA4MThmY2ZmMGU4ZjJhYjcxMDQ1NjUzMjlhZTkzNzg4NjJkYWE3N2Y2YzQwNzZmNmFkNTM4Zjc1N2ZhMDEwODk0YzA4NGU0OTY5MWU1ODIxMDY1NjFjNjAwYzEwYjlkZmNkNDJiNWM3YTVkNzRlZjA0ZWI="
+    messageBroker false
+    microfrontends []
+    nativeLanguage es
+    packageName co.com.ies.pruebas
+    prodDatabaseType postgresql
+    reactive false
+    searchEngine false
+    serviceDiscoveryType false
+    testFrameworks []
+    websocket spring-websocket
+    withAdminUi true
+  }
+}
+
