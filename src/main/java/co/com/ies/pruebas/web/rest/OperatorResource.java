@@ -157,7 +157,7 @@ public class OperatorResource {
         @org.springdoc.core.annotations.ParameterObject Pageable pageable
     ) {
         log.debug("REST request to get Operators by criteria: {}", criteria);
-
+        RandomDelay.randomDelay();
         Page<OperatorDTO> page = operatorQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -184,6 +184,7 @@ public class OperatorResource {
     @GetMapping("/{id}")
     public ResponseEntity<OperatorDTO> getOperator(@PathVariable("id") Long id) {
         log.debug("REST request to get Operator : {}", id);
+        RandomDelay.randomDelay();
         Optional<OperatorDTO> operatorDTO = operatorService.findOne(id);
         return ResponseUtil.wrapOrNotFound(operatorDTO);
     }

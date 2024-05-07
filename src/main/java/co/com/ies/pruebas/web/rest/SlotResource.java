@@ -153,7 +153,7 @@ public class SlotResource {
         @org.springdoc.core.annotations.ParameterObject Pageable pageable
     ) {
         log.debug("REST request to get Slots by criteria: {}", criteria);
-
+        RandomDelay.randomDelay();
         Page<SlotDTO> page = slotQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -180,6 +180,7 @@ public class SlotResource {
     @GetMapping("/{id}")
     public ResponseEntity<SlotDTO> getSlot(@PathVariable("id") Long id) {
         log.debug("REST request to get Slot : {}", id);
+        RandomDelay.randomDelay();
         Optional<SlotDTO> slotDTO = slotService.findOne(id);
         return ResponseUtil.wrapOrNotFound(slotDTO);
     }

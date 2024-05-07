@@ -7,13 +7,14 @@ jib {
         image = "eclipse-temurin:17-jre-focal"
         platforms {
             platform {
-                architecture = "${findProperty('jibArchitecture') ?: 'amd64'}"
+                //architecture = "${findProperty('jibArchitecture') ?: 'amd64'}"
+                architecture = 'arm64'
                 os = "linux"
             }
         }
     }
     to {
-        image = "democasino:latest"
+        image = "phipex/democasino:latest-64arm"
     }
     container {
         entrypoint = ["bash", "-c", "/entrypoint.sh"]

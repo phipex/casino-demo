@@ -153,7 +153,7 @@ public class ModelResource {
         @org.springdoc.core.annotations.ParameterObject Pageable pageable
     ) {
         log.debug("REST request to get Models by criteria: {}", criteria);
-
+        RandomDelay.randomDelay();
         Page<ModelDTO> page = modelQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -180,6 +180,7 @@ public class ModelResource {
     @GetMapping("/{id}")
     public ResponseEntity<ModelDTO> getModel(@PathVariable("id") Long id) {
         log.debug("REST request to get Model : {}", id);
+        RandomDelay.randomDelay();
         Optional<ModelDTO> modelDTO = modelService.findOne(id);
         return ResponseUtil.wrapOrNotFound(modelDTO);
     }

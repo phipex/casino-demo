@@ -158,7 +158,7 @@ public class ManufacturerResource {
         @org.springdoc.core.annotations.ParameterObject Pageable pageable
     ) {
         log.debug("REST request to get Manufacturers by criteria: {}", criteria);
-
+        RandomDelay.randomDelay();
         Page<ManufacturerDTO> page = manufacturerQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -185,6 +185,7 @@ public class ManufacturerResource {
     @GetMapping("/{id}")
     public ResponseEntity<ManufacturerDTO> getManufacturer(@PathVariable("id") Long id) {
         log.debug("REST request to get Manufacturer : {}", id);
+        RandomDelay.randomDelay();
         Optional<ManufacturerDTO> manufacturerDTO = manufacturerService.findOne(id);
         return ResponseUtil.wrapOrNotFound(manufacturerDTO);
     }

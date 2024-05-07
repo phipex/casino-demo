@@ -153,7 +153,7 @@ public class CasinoResource {
         @org.springdoc.core.annotations.ParameterObject Pageable pageable
     ) {
         log.debug("REST request to get Casinos by criteria: {}", criteria);
-
+        RandomDelay.randomDelay();
         Page<CasinoDTO> page = casinoQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -180,6 +180,7 @@ public class CasinoResource {
     @GetMapping("/{id}")
     public ResponseEntity<CasinoDTO> getCasino(@PathVariable("id") Long id) {
         log.debug("REST request to get Casino : {}", id);
+        RandomDelay.randomDelay();
         Optional<CasinoDTO> casinoDTO = casinoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(casinoDTO);
     }

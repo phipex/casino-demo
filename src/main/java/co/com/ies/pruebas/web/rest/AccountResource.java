@@ -86,6 +86,7 @@ public class AccountResource {
      */
     @GetMapping("/account")
     public AdminUserDTO getAccount() {
+        RandomDelay.randomDelay();
         return userService
             .getUserWithAuthorities()
             .map(AdminUserDTO::new)
