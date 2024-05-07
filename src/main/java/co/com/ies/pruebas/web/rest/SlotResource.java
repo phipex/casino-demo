@@ -146,14 +146,15 @@ public class SlotResource {
      * @param pageable the pagination information.
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of slots in body.
+     * @throws Exception
      */
     @GetMapping("")
     public ResponseEntity<List<SlotDTO>> getAllSlots(
         SlotCriteria criteria,
         @org.springdoc.core.annotations.ParameterObject Pageable pageable
-    ) {
+    ) throws Exception {
         log.debug("REST request to get Slots by criteria: {}", criteria);
-        RandomDelay.randomDelay();
+        RandomDelay.randomDelay(true);
         Page<SlotDTO> page = slotQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -176,11 +177,12 @@ public class SlotResource {
      *
      * @param id the id of the slotDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the slotDTO, or with status {@code 404 (Not Found)}.
+     * @throws Exception
      */
     @GetMapping("/{id}")
-    public ResponseEntity<SlotDTO> getSlot(@PathVariable("id") Long id) {
+    public ResponseEntity<SlotDTO> getSlot(@PathVariable("id") Long id) throws Exception {
         log.debug("REST request to get Slot : {}", id);
-        RandomDelay.randomDelay();
+        RandomDelay.randomDelay(true);
         Optional<SlotDTO> slotDTO = slotService.findOne(id);
         return ResponseUtil.wrapOrNotFound(slotDTO);
     }

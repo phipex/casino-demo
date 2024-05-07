@@ -146,14 +146,15 @@ public class ModelResource {
      * @param pageable the pagination information.
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of models in body.
+     * @throws Exception
      */
     @GetMapping("")
     public ResponseEntity<List<ModelDTO>> getAllModels(
         ModelCriteria criteria,
         @org.springdoc.core.annotations.ParameterObject Pageable pageable
-    ) {
+    ) throws Exception {
         log.debug("REST request to get Models by criteria: {}", criteria);
-        RandomDelay.randomDelay();
+        RandomDelay.randomDelay(true);
         Page<ModelDTO> page = modelQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -176,11 +177,12 @@ public class ModelResource {
      *
      * @param id the id of the modelDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the modelDTO, or with status {@code 404 (Not Found)}.
+     * @throws Exception
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ModelDTO> getModel(@PathVariable("id") Long id) {
+    public ResponseEntity<ModelDTO> getModel(@PathVariable("id") Long id) throws Exception {
         log.debug("REST request to get Model : {}", id);
-        RandomDelay.randomDelay();
+        RandomDelay.randomDelay(true);
         Optional<ModelDTO> modelDTO = modelService.findOne(id);
         return ResponseUtil.wrapOrNotFound(modelDTO);
     }

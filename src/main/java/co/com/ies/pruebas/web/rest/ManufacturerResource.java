@@ -151,14 +151,15 @@ public class ManufacturerResource {
      * @param pageable the pagination information.
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of manufacturers in body.
+     * @throws Exception
      */
     @GetMapping("")
     public ResponseEntity<List<ManufacturerDTO>> getAllManufacturers(
         ManufacturerCriteria criteria,
         @org.springdoc.core.annotations.ParameterObject Pageable pageable
-    ) {
+    ) throws Exception {
         log.debug("REST request to get Manufacturers by criteria: {}", criteria);
-        RandomDelay.randomDelay();
+        RandomDelay.randomDelay(true);
         Page<ManufacturerDTO> page = manufacturerQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -181,11 +182,12 @@ public class ManufacturerResource {
      *
      * @param id the id of the manufacturerDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the manufacturerDTO, or with status {@code 404 (Not Found)}.
+     * @throws Exception
      */
     @GetMapping("/{id}")
-    public ResponseEntity<ManufacturerDTO> getManufacturer(@PathVariable("id") Long id) {
+    public ResponseEntity<ManufacturerDTO> getManufacturer(@PathVariable("id") Long id) throws Exception {
         log.debug("REST request to get Manufacturer : {}", id);
-        RandomDelay.randomDelay();
+        RandomDelay.randomDelay(true);
         Optional<ManufacturerDTO> manufacturerDTO = manufacturerService.findOne(id);
         return ResponseUtil.wrapOrNotFound(manufacturerDTO);
     }

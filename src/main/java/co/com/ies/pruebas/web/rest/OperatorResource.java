@@ -150,14 +150,15 @@ public class OperatorResource {
      * @param pageable the pagination information.
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of operators in body.
+     * @throws Exception
      */
     @GetMapping("")
     public ResponseEntity<List<OperatorDTO>> getAllOperators(
         OperatorCriteria criteria,
         @org.springdoc.core.annotations.ParameterObject Pageable pageable
-    ) {
+    ) throws Exception {
         log.debug("REST request to get Operators by criteria: {}", criteria);
-        RandomDelay.randomDelay();
+        RandomDelay.randomDelay(true);
         Page<OperatorDTO> page = operatorQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -180,11 +181,12 @@ public class OperatorResource {
      *
      * @param id the id of the operatorDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the operatorDTO, or with status {@code 404 (Not Found)}.
+     * @throws Exception
      */
     @GetMapping("/{id}")
-    public ResponseEntity<OperatorDTO> getOperator(@PathVariable("id") Long id) {
+    public ResponseEntity<OperatorDTO> getOperator(@PathVariable("id") Long id) throws Exception {
         log.debug("REST request to get Operator : {}", id);
-        RandomDelay.randomDelay();
+        RandomDelay.randomDelay(true);
         Optional<OperatorDTO> operatorDTO = operatorService.findOne(id);
         return ResponseUtil.wrapOrNotFound(operatorDTO);
     }
